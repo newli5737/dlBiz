@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
-    // Check if BLOB token exists
     if (!process.env.BLOB_READ_WRITE_TOKEN) {
       return NextResponse.json({ error: 'Blob storage not configured' }, { status: 500 });
     }
@@ -29,13 +28,14 @@ export async function POST(request: NextRequest) {
     const ext = file.name.split('.').pop();
     const filename = `uploads/${timestamp}.${ext}`;
 
-    // Convert File to Buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
+    // Use 'public' for public stores, omit for private stores
     const blob = await put(filename, buffer, {
       access: 'public',
       token: process.env.BLOB_READ_WRITE_TOKEN,
+      addRandomSuffix: false,
     });
 
     return NextResponse.json({ url: blob.url, filename });
