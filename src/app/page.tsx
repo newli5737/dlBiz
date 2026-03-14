@@ -6,6 +6,7 @@ import CategoryBar from '@/components/CategoryBar';
 import ArticleCard from '@/components/ArticleCard';
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
+import { FiArrowRight } from 'react-icons/fi';
 
 export default async function HomePage() {
   const [categories, postsData, totalPosts] = await Promise.all([
@@ -41,7 +42,7 @@ export default async function HomePage() {
           <div className="section-header">
             <h2 className="section-title">Bài Viết Mới Nhất</h2>
             <Link href="/bai-viet" className="section-link">
-              Xem tất cả →
+              Xem tất cả <FiArrowRight style={{display:'inline',verticalAlign:'middle'}} />
             </Link>
           </div>
           <div className="article-grid">
@@ -73,7 +74,7 @@ export default async function HomePage() {
                 {cat.name}
               </h2>
               <Link href={`/danh-muc/${cat.slug}`} className="section-link">
-                Xem tất cả →
+                Xem tất cả <FiArrowRight style={{display:'inline',verticalAlign:'middle'}} />
               </Link>
             </div>
             <div className="article-grid">

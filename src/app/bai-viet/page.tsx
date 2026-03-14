@@ -5,10 +5,11 @@ import ArticleCard from '@/components/ArticleCard';
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { FiChevronLeft, FiChevronRight, FiFileText, FiSearch } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: 'Trang Bài Viết - VZone',
-  description: 'Tổng hợp tất cả bài viết về Buôn Ma Thuột trên VZone.',
+  title: 'Trang Bài Viết - dlBiz',
+  description: 'Tổng hợp tất cả bài viết về Buôn Ma Thuột trên dlBiz.',
 };
 
 export default async function ArticlesPage({
@@ -51,16 +52,7 @@ export default async function ArticlesPage({
   return (
     <>
       <Header />
-      <div className="page-header">
-        <div className="container">
-          <div className="breadcrumb">
-            <Link href="/">VZone</Link>
-            <span>—</span>
-            <span>Trang bài viết</span>
-          </div>
-          <h1>Trang Bài Viết</h1>
-        </div>
-      </div>
+      <div className="page-header" style={{ backgroundImage: "url('/images/hero-articles.png')" }} />
 
       <div className="container">
         <div className="two-column">
@@ -111,7 +103,7 @@ export default async function ArticlesPage({
               </>
             ) : (
               <div className="empty-state">
-                <div className="icon">📝</div>
+                <div className="icon"><FiFileText size={32} /></div>
                 <h3>Chưa có bài viết nào</h3>
                 <p>Hãy quay lại sau để xem các bài viết mới nhất.</p>
               </div>
@@ -121,7 +113,7 @@ export default async function ArticlesPage({
           {/* Sidebar */}
           <aside>
             <div className="sidebar-widget">
-              <h3>🔍 Tìm kiếm</h3>
+              <h3><FiSearch style={{display:'inline',verticalAlign:'middle',marginRight:'6px'}} /> Tìm kiếm</h3>
               <form action="/bai-viet" method="GET">
                 <input
                   type="text"
@@ -134,7 +126,7 @@ export default async function ArticlesPage({
             </div>
 
             <div className="sidebar-widget">
-              <h3>📰 Bài viết gần đây</h3>
+              <h3><FiFileText style={{display:'inline',verticalAlign:'middle',marginRight:'6px'}} /> Bài viết gần đây</h3>
               {recentPosts.map((post) => (
                 <Link
                   key={post.id}

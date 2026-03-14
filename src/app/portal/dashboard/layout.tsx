@@ -4,6 +4,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { FiBarChart2, FiFileText, FiGlobe, FiLogOut } from 'react-icons/fi';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
@@ -30,7 +31,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="dashboard">
       <aside className="dashboard-sidebar">
         <div className="dashboard-sidebar-logo">
-          <h2>🅥 VZone</h2>
+          <h2>dlBiz</h2>
           <span>Content Management</span>
         </div>
         <ul className="dashboard-nav">
@@ -39,7 +40,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               href="/portal/dashboard"
               className={pathname === '/portal/dashboard' ? 'active' : ''}
             >
-              <span className="nav-icon">📊</span>
+              <span className="nav-icon"><FiBarChart2 /></span>
               Dashboard
             </Link>
           </li>
@@ -48,13 +49,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               href="/portal/dashboard/posts"
               className={pathname === '/portal/dashboard/posts' ? 'active' : ''}
             >
-              <span className="nav-icon">📝</span>
+              <span className="nav-icon"><FiFileText /></span>
               Bài viết
             </Link>
           </li>
           <li>
             <a href="/" target="_blank">
-              <span className="nav-icon">🌐</span>
+              <span className="nav-icon"><FiGlobe /></span>
               Xem website
             </a>
           </li>
@@ -66,7 +67,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 signOut({ callbackUrl: '/portal' });
               }}
             >
-              <span className="nav-icon">🚪</span>
+              <span className="nav-icon"><FiLogOut /></span>
               Đăng xuất
             </a>
           </li>

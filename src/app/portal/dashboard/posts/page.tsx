@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import { FiFileText, FiEdit2, FiTrash2, FiCamera, FiX } from 'react-icons/fi';
 
 const RichTextEditor = dynamic(() => import('@/components/RichTextEditor'), { ssr: false });
 
@@ -184,7 +185,7 @@ export default function PostsPage() {
           </div>
         ) : posts.length === 0 ? (
           <div className="empty-state">
-            <div className="icon">📝</div>
+            <div className="icon"><FiFileText size={32} /></div>
             <h3>Chưa có bài viết nào</h3>
             <p>Nhấn &quot;Tạo bài viết&quot; để bắt đầu.</p>
           </div>
@@ -238,14 +239,14 @@ export default function PostsPage() {
                         onClick={() => openEdit(post)}
                         title="Sửa"
                       >
-                        ✏️
+                        <FiEdit2 />
                       </button>
                       <button
                         className="table-action-btn delete"
                         onClick={() => handleDelete(post.id)}
                         title="Xóa"
                       >
-                        🗑️
+                        <FiTrash2 />
                       </button>
                     </div>
                   </td>
@@ -263,7 +264,7 @@ export default function PostsPage() {
             <div className="modal-header">
               <h2>{editingPost ? 'Chỉnh sửa bài viết' : 'Tạo bài viết mới'}</h2>
               <button className="modal-close" onClick={() => setModalOpen(false)}>
-                ✕
+                <FiX />
               </button>
             </div>
             <div className="modal-body">
@@ -315,7 +316,7 @@ export default function PostsPage() {
                       <img src={thumbnail} alt="Thumbnail" />
                     ) : (
                       <div className="thumbnail-upload-text">
-                        <span className="icon">📷</span>
+                        <span className="icon"><FiCamera /></span>
                         Nhấn để tải ảnh lên
                       </div>
                     )}

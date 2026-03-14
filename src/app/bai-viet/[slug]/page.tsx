@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { FiCalendar, FiUser, FiFileText } from 'react-icons/fi';
 
 export async function generateMetadata({
   params,
@@ -15,9 +16,9 @@ export async function generateMetadata({
   const post = await prisma.post.findUnique({
     where: { slug },
   });
-  if (!post) return { title: 'Bài viết không tồn tại - VZone' };
+  if (!post) return { title: 'Bài viết không tồn tại - dlBiz' };
   return {
-    title: `${post.title} - VZone`,
+    title: `${post.title} - dlBiz`,
     description: post.excerpt || '',
   };
 }
@@ -83,8 +84,8 @@ export default async function ArticleDetailPage({
           </Link>
           <h1 className="article-hero-title">{post.title}</h1>
           <div className="article-hero-meta">
-            <span>📅 {new Date(post.createdAt).toLocaleDateString('vi-VN')}</span>
-            <span>✍️ {post.author.name}</span>
+            <span><FiCalendar style={{display:'inline',verticalAlign:'middle',marginRight:'4px'}} /> {new Date(post.createdAt).toLocaleDateString('vi-VN')}</span>
+            <span><FiUser style={{display:'inline',verticalAlign:'middle',marginRight:'4px'}} /> {post.author.name}</span>
           </div>
         </div>
       </div>
@@ -102,7 +103,7 @@ export default async function ArticleDetailPage({
           {/* Sidebar */}
           <aside>
             <div className="sidebar-widget">
-              <h3>📰 Bài viết gần đây</h3>
+              <h3><FiFileText style={{display:'inline',verticalAlign:'middle',marginRight:'6px'}} /> Bài viết gần đây</h3>
               {recentPosts.map((rp) => (
                 <Link
                   key={rp.id}

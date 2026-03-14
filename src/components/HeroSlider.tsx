@@ -1,28 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const slides = [
   {
     badge: 'ẨM THỰC & TOPLIST',
-    title: 'Những Địa Điểm',
-    titleHighlight: 'Không Thể Bỏ Lỡ',
-    desc: 'Tổng hợp toplist nhà hàng, quán ăn, dịch vụ tại Buôn Ma Thuột được Vzone bình chọn và chia sẻ.',
-    bg: '/uploads/hero-1.jpg',
+    subtitle: 'Khám phá Buôn Ma Thuột',
+    title: 'Toplist',
+    titleHighlight: 'Ẩm Thực & Dịch Vụ',
+    desc: 'Tổng hợp những địa điểm ăn uống, giải trí, dịch vụ được đánh giá cao nhất tại BMT.',
+    bg: '/images/1.webp',
   },
   {
-    badge: 'KHÁM PHÁ BMT',
-    title: 'Trải Nghiệm',
-    titleHighlight: 'Tuyệt Vời Nhất',
-    desc: 'Khám phá những trải nghiệm độc đáo, những địa điểm thú vị nhất tại thành phố cà phê.',
-    bg: '/uploads/hero-2.jpg',
+    badge: 'TRẢI NGHIỆM',
+    subtitle: 'Thành phố Cà Phê',
+    title: 'Điểm Đến',
+    titleHighlight: 'Cho Mọi Trải Nghiệm',
+    desc: 'Từ quán cà phê view đẹp đến nhà hàng sang trọng — tất cả đều có tại đây.',
+    bg: '/images/2.webp',
   },
   {
     badge: 'DU LỊCH & LƯU TRÚ',
-    title: 'Điểm Đến',
-    titleHighlight: 'Lý Tưởng',
-    desc: 'Tìm kiếm khách sạn, nhà nghỉ, homestay tốt nhất cho chuyến du lịch của bạn.',
-    bg: '/uploads/hero-3.jpg',
+    subtitle: 'Đắk Lắk - Tây Nguyên',
+    title: 'Hành Trình',
+    titleHighlight: 'Bắt Đầu Từ Đây',
+    desc: 'Khách sạn, homestay, nhà nghỉ tốt nhất cho chuyến du lịch Tây Nguyên của bạn.',
+    bg: '/images/3.jpg',
   },
 ];
 
@@ -50,13 +55,13 @@ export default function HeroSlider({ totalPosts, totalCategories }: HeroProps) {
       <div className="hero-slides">
         {slides.map((slide, i) => (
           <div key={i} className={`hero-slide ${i === current ? 'active' : ''}`}>
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                background: `linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%)`,
-              }}
+            <Image
+              src={slide.bg}
+              alt={slide.title}
+              fill
+              priority={i === 0}
               className="hero-slide-bg"
+              style={{ objectFit: 'cover' }}
             />
             <div className="hero-overlay" />
           </div>
@@ -68,13 +73,15 @@ export default function HeroSlider({ totalPosts, totalCategories }: HeroProps) {
           <span className="hero-badge-dot" />
           {slides[current].badge}
         </div>
+        <p className="hero-subtitle">{slides[current].subtitle}</p>
         <h1 className="hero-title">
-          {slides[current].title}{' '}
+          {slides[current].title}
+          <br />
           <span>{slides[current].titleHighlight}</span>
         </h1>
         <p className="hero-desc">{slides[current].desc}</p>
         <a href="/bai-viet" className="hero-cta">
-          Xem toplist →
+          Khám phá ngay <FiArrowRight />
         </a>
       </div>
 
@@ -95,10 +102,10 @@ export default function HeroSlider({ totalPosts, totalCategories }: HeroProps) {
 
       <div className="hero-arrows">
         <button className="hero-arrow" onClick={prev} aria-label="Previous">
-          ←
+          <FiChevronLeft />
         </button>
         <button className="hero-arrow" onClick={next} aria-label="Next">
-          →
+          <FiChevronRight />
         </button>
       </div>
 

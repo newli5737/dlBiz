@@ -15,9 +15,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const category = await prisma.category.findUnique({ where: { slug } });
-  if (!category) return { title: 'Danh mục không tồn tại - VZone' };
+  if (!category) return { title: 'Danh mục không tồn tại - dlBiz' };
   return {
-    title: `${category.name} - VZone`,
+    title: `${category.name} - dlBiz`,
     description: `Tổng hợp bài viết về ${category.name} tại Buôn Ma Thuột.`,
   };
 }
@@ -57,7 +57,7 @@ export default async function CategoryPage({
       <div className="page-header">
         <div className="container">
           <div className="breadcrumb">
-            <Link href="/">VZone</Link>
+            <Link href="/">dlBiz</Link>
             <span>—</span>
             <span>{category.name}</span>
           </div>

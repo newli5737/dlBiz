@@ -54,7 +54,7 @@ export default function PortalLoginPage() {
           </div>
         </div>
         <h1>Đăng nhập CMS</h1>
-        <p>Quản lý bài viết VZone</p>
+        <p>Quản lý bài viết dlBiz</p>
 
         {error && <div className="form-error">{error}</div>}
 
@@ -64,7 +64,7 @@ export default function PortalLoginPage() {
             <input
               type="email"
               className="form-input"
-              placeholder="admin@vzone.vn"
+              placeholder="admin@dlBiz.vn"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

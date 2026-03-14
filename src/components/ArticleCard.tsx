@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FiFileText } from 'react-icons/fi';
 
 interface Post {
   id: string;
@@ -27,7 +28,7 @@ export default function ArticleCard({ post }: { post: Post }) {
           <img src={post.thumbnail} alt={post.title} />
         ) : (
           <div className="article-card-placeholder">
-            {post.category?.icon || '📝'}
+            {post.category?.icon || <FiFileText size={32} />}
           </div>
         )}
         <div className="article-card-date">
